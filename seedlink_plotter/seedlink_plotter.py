@@ -204,6 +204,8 @@ class SeedlinkPlotter(tkinter.Tk):
                             pad=True, nearest_sample=False)
             else:
                 stream.merge(-1)
+                stream.filter("lowpass", freq=0.1)
+                stream.filter("highpass", freq=0.01)
                 stream.trim(starttime=self.start_time, endtime=self.stop_time)
             if self.drum_plot:
                 self.plot_drum(stream)
